@@ -97,7 +97,7 @@ function submit() {
                 </form>
 
                 <div class="mt-6 break-words rounded-lg border border-slate-200 bg-slate-50/80 px-4 py-3 text-xs font-semibold leading-5 text-slate-500">
-                    Demo: OWNER001 / ADM001 / EMP001 &middot; password: password
+                    Gunakan kredensial resmi yang diberikan administrator perusahaan.
                 </div>
             </section>
         </section>

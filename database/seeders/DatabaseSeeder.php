@@ -30,6 +30,18 @@ class DatabaseSeeder extends Seeder
             ['code' => 'admin', 'name' => 'Administrasi'],
         ])->mapWithKeys(fn ($data) => [$data['code'] => JobRole::firstOrCreate(['code' => $data['code']], $data)]);
 
+        if (app()->environment(['local', 'testing'])) {
+            $this->seedDemoUsers($outlets, $roles);
+        } else {
+            $this->seedProductionOwner($outlets, $roles);
+        }
+
+        $this->seedFormsFromMarkdown();
+        $this->seedKpiIndicators();
+    }
+
+    private function seedDemoUsers($outlets, $roles): void
+    {
         User::updateOrCreate(
             ['nik' => 'OWNER001'],
             [
@@ -79,9 +91,32 @@ class DatabaseSeeder extends Seeder
                 ],
             );
         });
+    }
 
-        $this->seedFormsFromMarkdown();
-        $this->seedKpiIndicators();
+    private function seedProductionOwner($outlets, $roles): void
+    {
+        User::whereIn('nik', ['ADM001', 'EMP001', 'EMP002', 'EMP003', 'EMP004', 'EMP005', 'EMP006', 'EMP007'])
+            ->update(['is_active' => false]);
+
+        $password = env('SEED_OWNER_PASSWORD');
+
+        if (! $password) {
+            return;
+        }
+
+        User::updateOrCreate(
+            ['nik' => env('SEED_OWNER_NIK', 'OWNER001')],
+            [
+                'name' => env('SEED_OWNER_NAME', 'Owner Tratama'),
+                'email' => env('SEED_OWNER_EMAIL', 'owner@kpi.pondokkomputerlangkat.web.id'),
+                'password' => Hash::make($password),
+                'role' => 'owner',
+                'outlet_id' => $outlets['TC01']->id ?? null,
+                'job_role_id' => $roles['admin']->id ?? null,
+                'position_title' => 'Owner',
+                'is_active' => true,
+            ],
+        );
     }
 
     private function seedFormsFromMarkdown(): void
@@ -215,11 +250,19 @@ class DatabaseSeeder extends Seeder
             return [
                 'label' => trim($match[1]),
                 'type' => $this->mapFieldType($rawType),
-                'is_required' => str_contains($requiredMatch[1] ?? '', '✅'),
+                'is_required' => $this->fieldIsRequired($requiredMatch[1] ?? ''),
                 'options' => $options,
                 'config' => $this->configFromBody($rawType, $body),
             ];
         })->all();
+    }
+
+    private function fieldIsRequired(string $value): bool
+    {
+        $normalized = Str::lower($value);
+
+        return (bool) preg_match('/\(\s*ya\s*\)/i', $normalized)
+            || (str_contains($normalized, 'ya') && ! str_contains($normalized, 'tidak'));
     }
 
     private function mapFieldType(string $rawType): string
