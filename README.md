@@ -1,6 +1,6 @@
-# KPI Tratama
+# PT. TRATAMA KREATIF INDONESIA
 
-Aplikasi KPI Tratama adalah sistem Laravel + Vue/Inertia untuk menggantikan Google Form KPI, HR, dan operasional yang sebelumnya dikumpulkan dari `gform_extracted`.
+Aplikasi KPI PT. TRATAMA KREATIF INDONESIA adalah sistem Laravel + Vue/Inertia untuk menggantikan Google Form KPI, HR, dan operasional yang sebelumnya dikumpulkan dari `gform_extracted`.
 
 Target produksi aplikasi:
 
@@ -73,7 +73,7 @@ Akun demo tidak ditampilkan di halaman login publik dan tidak dibuat otomatis di
 
 - File `.env`, `.env.production`, `auth.json`, `/vendor`, `/node_modules`, `/public/build`, dan `/public/hot` tidak masuk Git.
 - Jangan commit credential database, app key, token, atau password server.
-- Produksi memakai `APP_DEBUG=false` dan `APP_URL=https://kpi.pondokkomputerlangkat.web.id`.
+- Produksi memakai `APP_DEBUG=false`, `APP_NAME="PT. TRATAMA KREATIF INDONESIA"`, dan `APP_URL=https://kpi.pondokkomputerlangkat.web.id`.
 - Akun owner produksi dapat dibuat atau dirotasi dari environment variable `SEED_OWNER_*`, tanpa default password.
 - File `public/hot` harus dihapus di produksi. Jika file ini ada, Laravel akan memuat asset dari Vite dev server seperti `http://127.0.0.1:5173` dan halaman bisa blank karena CORS.
 

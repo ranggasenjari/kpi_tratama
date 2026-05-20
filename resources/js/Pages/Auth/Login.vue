@@ -1,6 +1,7 @@
 <script setup>
 import { Head, useForm } from '@inertiajs/vue3';
-import { ArrowRight, BadgeCheck, KeyRound, ShieldCheck, Sparkles } from '@lucide/vue';
+import { ArrowRight, BadgeCheck, ShieldCheck, Sparkles } from '@lucide/vue';
+import BrandIdentity from '../../Components/BrandIdentity.vue';
 
 const form = useForm({
     nik: '',
@@ -22,7 +23,7 @@ function submit() {
 
         <section class="relative mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-6xl items-center gap-6 lg:grid-cols-[1.05fr_0.95fr]">
             <div class="hidden lg:block">
-                <div class="kicker">KPI Tratama</div>
+                <BrandIdentity size="lg" stacked />
                 <h1 class="mt-4 max-w-2xl text-5xl font-black leading-tight text-slate-950">
                     Operasional rapi, KPI terbaca, keputusan lebih cepat.
                 </h1>
@@ -50,11 +51,9 @@ function submit() {
             </div>
 
             <section class="material-card-strong mx-auto w-full max-w-md min-w-0 overflow-hidden p-6 sm:p-7">
-                <div class="mb-7 flex items-center gap-3">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/25">
-                        <KeyRound class="h-5 w-5" />
-                    </div>
-                    <div>
+                <div class="mb-7">
+                    <BrandIdentity />
+                    <div class="mt-5">
                         <div class="text-xl font-black text-slate-950">Masuk KPI</div>
                         <p class="text-sm font-medium text-slate-500">Gunakan NIK karyawan</p>
                     </div>

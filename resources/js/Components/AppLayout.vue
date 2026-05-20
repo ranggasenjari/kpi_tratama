@@ -10,8 +10,8 @@ import {
     LogOut,
     Network,
     Settings2,
-    Sparkles,
 } from '@lucide/vue';
+import BrandIdentity from './BrandIdentity.vue';
 
 const page = usePage();
 const user = page.props.auth.user;
@@ -38,15 +38,7 @@ function logout() {
             <div class="absolute inset-x-0 top-0 h-36 bg-gradient-to-br from-blue-500/35 via-cyan-400/20 to-amber-300/25"></div>
 
             <div class="relative px-2">
-                <div class="flex items-center gap-3">
-                    <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-white/14 shadow-lg ring-1 ring-white/18">
-                        <Sparkles class="h-5 w-5 text-cyan-200" />
-                    </div>
-                    <div>
-                        <div class="text-lg font-semibold text-white">KPI Tratama</div>
-                        <div class="mt-1 text-sm text-cyan-100/80">Performance workspace</div>
-                    </div>
-                </div>
+                <BrandIdentity theme="dark" size="sm" />
             </div>
 
             <nav class="relative mt-9 space-y-1.5">
@@ -76,9 +68,12 @@ function logout() {
         <div class="lg:pl-72">
             <header class="sticky top-0 z-10 border-b border-white/60 bg-white/78 px-4 py-3 shadow-sm backdrop-blur-xl lg:px-8">
                 <div class="flex items-center justify-between gap-4">
-                    <div>
-                        <div class="text-sm font-semibold text-slate-950">{{ user?.name }}</div>
-                        <div class="text-xs font-semibold uppercase text-slate-500">{{ user?.role }} &middot; {{ user?.nik }}</div>
+                    <div class="flex min-w-0 items-center gap-3">
+                        <BrandIdentity class="lg:hidden" compact size="sm" />
+                        <div class="min-w-0">
+                            <div class="truncate text-sm font-semibold text-slate-950">{{ user?.name }}</div>
+                            <div class="truncate text-xs font-semibold uppercase text-slate-500">{{ user?.role }} &middot; {{ user?.nik }}</div>
+                        </div>
                     </div>
                     <button type="button" class="btn-secondary" @click="logout">
                         <LogOut class="h-4 w-4" />
