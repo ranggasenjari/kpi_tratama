@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dokumentasi Skema Penilaian KPI Tratama</title>
+    <style>
+        :root {
+            --ink: #182033;
+            --muted: #64748b;
+            --line: rgba(30, 41, 59, 0.14);
+            --paper: rgba(255, 255, 255, 0.92);
+            --brand: #2563eb;
+            --cyan: #0891b2;
+            --amber: #f59e0b;
+            --green: #059669;
+            --red: #dc2626;
+            --radius: 8px;
+            --shadow: 0 18px 48px rgba(15, 23, 42, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--ink);
+            font-family: Aptos, "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.58) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.58) 1px, transparent 1px),
+                linear-gradient(135deg, #eaf4ff 0%, #f8fbff 45%, #fff5dc 100%);
+            background-size: 32px 32px, 32px 32px, auto;
+        }
+
+        main {
+            width: min(1120px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 48px 0;
+        }
+
+        header {
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            border-radius: var(--radius);
+            background:
+                linear-gradient(135deg, rgba(37, 99, 235, 0.12), transparent 44%),
+                linear-gradient(225deg, rgba(245, 158, 11, 0.12), transparent 36%),
+                var(--paper);
+            box-shadow: var(--shadow);
+            padding: 36px;
+        }
+
+        .kicker {
+            color: var(--cyan);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 860px;
+            margin: 12px 0 0;
+            font-size: clamp(34px, 5vw, 56px);
+            line-height: 1.02;
+            letter-spacing: -0.02em;
+        }
+
+        .lead {
+            max-width: 780px;
+            margin: 18px 0 0;
+            color: #475569;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        section {
+            margin-top: 24px;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            border-radius: var(--radius);
+            background: var(--paper);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            padding: 26px;
+        }
+
+        h2 {
+            margin: 0 0 14px;
+            font-size: 24px;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            margin: 22px 0 10px;
+            font-size: 18px;
+        }
+
+        p,
+        li {
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        ul,
+        ol {
+            padding-left: 22px;
+        }
+
+        code {
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            border-radius: 6px;
+            background: #f8fafc;
+            color: #0f172a;
+            padding: 2px 6px;
+            font-family: "Cascadia Code", Consolas, monospace;
+            font-size: 0.92em;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .card {
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            border-radius: var(--radius);
+            background: #fff;
+            padding: 18px;
+        }
+
+        .metric {
+            color: #0f172a;
+            font-size: 28px;
+            font-weight: 900;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .formula {
+            border-left: 5px solid var(--brand);
+            background: linear-gradient(90deg, rgba(37, 99, 235, 0.08), rgba(255, 255, 255, 0.82));
+            padding: 18px 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: var(--radius);
+            background: white;
+            font-size: 14px;
+        }
+
+        th {
+            background: linear-gradient(90deg, #f8fafc, #eef7ff);
+            color: #475569;
+            font-size: 12px;
+            letter-spacing: 0.04em;
+            text-align: left;
+            text-transform: uppercase;
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 13px 14px;
+            vertical-align: top;
+        }
+
+        td strong {
+            color: #0f172a;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .blue {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .green {
+            background: #d1fae5;
+            color: #047857;
+        }
+
+        .amber {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .red {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .note {
+            border-color: rgba(245, 158, 11, 0.32);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.11), rgba(255, 255, 255, 0.9));
+        }
+
+        @media (max-width: 820px) {
+            main {
+                width: min(100% - 20px, 1120px);
+                padding: 18px 0;
+            }
+
+            header,
+            section {
+                padding: 20px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <div class="kicker">Dokumentasi KPI Tratama</div>
+            <h1>Skema Penilaian KPI yang Diterapkan Sistem</h1>
+            <p class="lead">
+                Sistem KPI Tratama memakai skema hybrid: karyawan mengirim bukti aktivitas melalui form dinamis,
+                admin melakukan review, lalu sistem menghitung skor bulanan dari submission yang disetujui saja.
+                Skor KPI dan estimasi reward dihitung terpisah agar penilaian performa tidak tercampur dengan nominal insentif.
+            </p>
+        </header>
+
+        <section>
+            <h2>Prinsip Utama</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="metric">1</div>
+                    <div class="muted">Submission pending belum dihitung</div>
+                    <p>Aktivitas baru memengaruhi KPI jika status submission sudah <code>approved</code>.</p>
+                </div>
+                <div class="card">
+                    <div class="metric">2</div>
+                    <div class="muted">Target dan bobot dinamis</div>
+                    <p>Setiap indikator memiliki target, bobot, periode, tipe penilaian, dan aturan reward sendiri.</p>
+                </div>
+                <div class="card">
+                    <div class="metric">3</div>
+                    <div class="muted">Assignment mengikuti karyawan</div>
+                    <p>Indikator dapat berlaku untuk semua karyawan, outlet tertentu, jabatan tertentu, atau user tertentu.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Alur Penilaian</h2>
+            <ol>
+                <li>Admin membuat atau mengaktifkan template form, misalnya KPI Kebersihan Harian atau KPI Upload Sosmed.</li>
+                <li>Admin menghubungkan template form ke <code>KPI Indicator</code> yang berisi target, bobot, periode, tipe indikator, dan reward.</li>
+                <li>Karyawan mengisi form dan mengunggah bukti aktivitas. Submission otomatis masuk status <code>pending</code>.</li>
+                <li>Admin meninjau bukti. Admin dapat mengubah status menjadi <code>approved</code> atau <code>rejected</code>, memberi catatan, mengoreksi unit, atau memberi skor manual.</li>
+                <li>Sistem menghitung laporan bulanan dari semua indikator yang aktif dan ter-assign ke karyawan.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Rumus Skor KPI</h2>
+            <div class="formula">
+                <p><strong>Pencapaian indikator</strong> = hasil aktivitas approved sesuai tipe indikator.</p>
+                <p><strong>Rasio indikator</strong> = <code>pencapaian / target</code>.</p>
+                <p><strong>Kontribusi skor</strong> = <code>bobot indikator x rasio indikator</code>.</p>
+                <p><strong>Skor KPI bulanan</strong> = <code>(total kontribusi skor / total bobot) x 100</code>.</p>
+            </div>
+            <p>
+                Jika indikator tidak mengizinkan over target, rasio maksimal dibatasi menjadi <code>100%</code>.
+                Jika indikator mengizinkan over target, pencapaian boleh melebihi target dan kontribusi skor dapat ikut meningkat.
+            </p>
+        </section>
+
+        <section>
+            <h2>Status Submission</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Arti</th>
+                        <th>Dampak ke KPI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="pill amber">pending</span></td>
+                        <td>Submission sudah dikirim dan menunggu review admin.</td>
+                        <td>Tampil sebagai pekerjaan review, tetapi belum masuk skor dan reward.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pill green">approved</span></td>
+                        <td>Bukti aktivitas diterima oleh admin.</td>
+                        <td>Masuk ke perhitungan pencapaian, skor KPI, dan reward jika ada.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pill red">rejected</span></td>
+                        <td>Bukti aktivitas ditolak atau tidak sesuai.</td>
+                        <td>Tidak masuk perhitungan KPI.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pill blue">draft</span></td>
+                        <td>Konsep submission jika fitur draft digunakan.</td>
+                        <td>Tidak masuk perhitungan KPI.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Tipe Indikator</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipe</th>
+                        <th>Cara Menghitung Pencapaian</th>
+                        <th>Contoh Penggunaan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong><code>frequency</code></strong></td>
+                        <td>Menghitung jumlah submission <code>approved</code> pada periode berjalan.</td>
+                        <td>Kebersihan Harian, Buka Tutup Kunci Toko.</td>
+                    </tr>
+                    <tr>
+                        <td><strong><code>binary_compliance</code></strong></td>
+                        <td>Dalam implementasi saat ini diperlakukan seperti hitungan submission approved, cocok untuk bukti kepatuhan ya/tidak.</td>
+                        <td>Kepatuhan SOP atau checklist sederhana.</td>
+                    </tr>
+                    <tr>
+                        <td><strong><code>quantity_reward</code></strong></td>
+                        <td>Menjumlahkan <code>approved_units</code> dari submission approved.</td>
+                        <td>Upload Sosmed, transaksi rental, input service masuk.</td>
+                    </tr>
+                    <tr>
+                        <td><strong><code>fixed_threshold_reward</code></strong></td>
+                        <td>Menghitung jumlah submission approved, lalu membandingkannya dengan target minimum.</td>
+                        <td>PDH/PDL dengan cashback bulanan jika target terpenuhi.</td>
+                    </tr>
+                    <tr>
+                        <td><strong><code>manual_score</code></strong></td>
+                        <td>Menggunakan rata-rata <code>manual_score</code> dari submission approved, lalu dikonversi terhadap target.</td>
+                        <td>Penilaian kualitas kerja yang butuh judgement admin.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Reward dan Insentif</h2>
+            <p>
+                Reward dihitung terpisah dari skor KPI. Skor KPI menunjukkan performa dalam skala 0-100 atau lebih jika overachievement aktif,
+                sedangkan reward menunjukkan estimasi nominal insentif dari indikator tertentu.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipe Reward</th>
+                        <th>Rumus</th>
+                        <th>Contoh</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Reward per unit</strong></td>
+                        <td><code>approved_units x reward_amount</code></td>
+                        <td>KPI Upload Sosmed: 2 upload approved x Rp500 = Rp1.000.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reward threshold</strong></td>
+                        <td><code>reward_amount</code> cair jika pencapaian lebih besar atau sama dengan target.</td>
+                        <td>KPI PDH/PDL: target 20 approved, reward Rp30.000 jika target terpenuhi.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tanpa reward</strong></td>
+                        <td>Jika <code>reward_amount</code> bernilai 0, indikator hanya memengaruhi skor KPI.</td>
+                        <td>Kebersihan Harian atau Buka Tutup Kunci jika tidak diberi insentif nominal.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Konfigurasi KPI Awal</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Indikator</th>
+                        <th>Tipe</th>
+                        <th>Target Bulanan</th>
+                        <th>Bobot</th>
+                        <th>Reward</th>
+                        <th>Over Target</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>KPI Buka Tutup Kunci Toko</td>
+                        <td><code>frequency</code></td>
+                        <td>26</td>
+                        <td>15</td>
+                        <td>-</td>
+                        <td>Tidak</td>
+                    </tr>
+                    <tr>
+                        <td>KPI Jasa Service Tratama</td>
+                        <td><code>quantity_reward</code></td>
+                        <td>10 unit</td>
+                        <td>20</td>
+                        <td>-</td>
+                        <td>Ya</td>
+                    </tr>
+                    <tr>
+                        <td>KPI Kebersihan Harian</td>
+                        <td><code>frequency</code></td>
+                        <td>26</td>
+                        <td>20</td>
+                        <td>-</td>
+                        <td>Tidak</td>
+                    </tr>
+                    <tr>
+                        <td>KPI Kebersihan Total</td>
+                        <td><code>fixed_threshold_reward</code></td>
+                        <td>1</td>
+                        <td>15</td>
+                        <td>-</td>
+                        <td>Tidak</td>
+                    </tr>
+                    <tr>
+                        <td>KPI PDH/PDL Karyawan Tratama</td>
+                        <td><code>fixed_threshold_reward</code></td>
+                        <td>20</td>
+                        <td>15</td>
+                        <td>Rp30.000 per bulan jika target terpenuhi</td>
+                        <td>Tidak</td>
+                    </tr>
+                    <tr>
+                        <td>KPI Rental Mobil Lepas Kunci</td>
+                        <td><code>quantity_reward</code></td>
+                        <td>2 unit</td>
+                        <td>15</td>
+                        <td>-</td>
+                        <td>Ya</td>
+                    </tr>
+                    <tr>
+                        <td>KPI Upload Sosmed</td>
+                        <td><code>quantity_reward</code></td>
+                        <td>30 upload</td>
+                        <td>15</td>
+                        <td>Rp500 per upload approved</td>
+                        <td>Ya</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Contoh Perhitungan</h2>
+            <p>Misalnya seorang karyawan memiliki 3 indikator aktif pada bulan Mei:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Indikator</th>
+                        <th>Target</th>
+                        <th>Approved</th>
+                        <th>Bobot</th>
+                        <th>Rasio</th>
+                        <th>Kontribusi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Kebersihan Harian</td>
+                        <td>26</td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>76,92%</td>
+                        <td>15,38</td>
+                    </tr>
+                    <tr>
+                        <td>PDH/PDL</td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>15</td>
+                        <td>100%</td>
+                        <td>15,00</td>
+                    </tr>
+                    <tr>
+                        <td>Upload Sosmed</td>
+                        <td>30</td>
+                        <td>36 unit</td>
+                        <td>15</td>
+                        <td>120% karena over target aktif</td>
+                        <td>18,00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                Total bobot = 50. Total kontribusi = 48,38.
+                Skor KPI bulanan = <code>(48,38 / 50) x 100 = 96,76</code>.
+                Reward = Rp30.000 dari PDH/PDL + <code>36 x Rp500</code> dari Upload Sosmed = Rp48.000.
+            </p>
+        </section>
+
+        <section class="note">
+            <h2>Catatan Operasional</h2>
+            <ul>
+                <li>Periode laporan memakai bulan berjalan berdasarkan timezone aplikasi <code>Asia/Jakarta</code>.</li>
+                <li>Perubahan form tidak merusak histori karena jawaban disimpan berdasarkan versi form.</li>
+                <li>Admin dapat mengoreksi <code>approved_units</code> saat review agar hitungan unit lebih akurat.</li>
+                <li>Owner dan admin melihat laporan rekap bulanan; karyawan melihat capaian KPI miliknya sendiri.</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

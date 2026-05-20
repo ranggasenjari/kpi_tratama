@@ -1,0 +1,268 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../**/*.vue';
+
+@theme {
+    --font-sans: 'Aptos', 'Segoe UI Variable', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+    --ink: #182033;
+    --muted: #64748b;
+    --line: rgba(30, 41, 59, 0.12);
+    --paper: rgba(255, 255, 255, 0.9);
+    --paper-strong: #ffffff;
+    --brand: #2563eb;
+    --brand-2: #0891b2;
+    --accent: #f59e0b;
+    --success: #059669;
+    --danger: #dc2626;
+    --shell: #eef5fb;
+    --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.08);
+    --shadow-md: 0 18px 48px rgba(15, 23, 42, 0.12);
+    --radius: 8px;
+}
+
+html {
+    background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.09), transparent 38%),
+        linear-gradient(225deg, rgba(245, 158, 11, 0.1), transparent 34%),
+        #eef5fb;
+}
+
+body {
+    color: var(--ink);
+    min-height: 100vh;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+    transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        background-color 160ms ease,
+        color 160ms ease,
+        transform 160ms ease;
+}
+
+.app-frame {
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.62) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.62) 1px, transparent 1px),
+        linear-gradient(135deg, #eaf4ff 0%, #f8fbff 42%, #fff6df 100%);
+    background-size: 28px 28px, 28px 28px, auto;
+}
+
+.material-card {
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.88));
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(16px);
+    border-radius: var(--radius);
+}
+
+.material-card-strong {
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: var(--paper-strong);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius);
+}
+
+.page-title {
+    color: #0f172a;
+    font-size: 1.75rem;
+    line-height: 2.125rem;
+    font-weight: 760;
+}
+
+.page-subtitle {
+    color: var(--muted);
+    font-size: 0.925rem;
+}
+
+.kicker {
+    color: var(--brand-2);
+    font-size: 0.75rem;
+    font-weight: 760;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    display: inline-flex;
+    min-height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, #2563eb, #0891b2);
+    color: white;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 720;
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.24);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 30px rgba(37, 99, 235, 0.28);
+}
+
+.btn-secondary {
+    display: inline-flex;
+    min-height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.82);
+    color: #334155;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 650;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+}
+
+.btn-secondary:hover {
+    background: #ffffff;
+    border-color: rgba(37, 99, 235, 0.32);
+    color: #1d4ed8;
+}
+
+.btn-danger {
+    display: inline-flex;
+    min-height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    box-shadow: 0 10px 22px rgba(220, 38, 38, 0.22);
+}
+
+.btn-success {
+    display: inline-flex;
+    min-height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    box-shadow: 0 10px 22px rgba(5, 150, 105, 0.2);
+}
+
+.field-control {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid rgba(148, 163, 184, 0.42);
+    background: rgba(255, 255, 255, 0.88);
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    color: #172033;
+    outline: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.field-control:focus {
+    border-color: rgba(37, 99, 235, 0.72);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.field-label {
+    display: block;
+    color: #334155;
+    font-size: 0.8125rem;
+    font-weight: 720;
+}
+
+.metric-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.9));
+    padding: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #06b6d4, #f59e0b);
+}
+
+.table-shell {
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    background: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.data-table {
+    width: 100%;
+    text-align: left;
+    font-size: 0.875rem;
+}
+
+.data-table thead {
+    border-bottom: 1px solid rgba(148, 163, 184, 0.26);
+    background: linear-gradient(90deg, #f8fafc, #eef7ff);
+    color: #64748b;
+    font-size: 0.72rem;
+    font-weight: 760;
+    text-transform: uppercase;
+}
+
+.data-table tbody > tr {
+    border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+}
+
+.data-table tbody > tr:hover {
+    background: rgba(248, 250, 252, 0.78);
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.26);
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.25rem 0.625rem;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 720;
+}
+
+.fade-rise {
+    animation: fade-rise 420ms ease both;
+}
+
+@keyframes fade-rise {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
